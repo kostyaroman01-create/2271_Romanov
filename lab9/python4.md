@@ -24,6 +24,28 @@
 Результат работы
 37
 ```
+n = int(input())
+
+primes = []
+candidate = 2
+
+# Ищем простые числа, пока не найдем нужное количество
+while len(primes) < n:
+    # Проверяем, делится ли candidate на какое-нибудь из уже найденных простых чисел
+    is_prime = True
+    for p in primes:
+        if candidate % p == 0:
+            is_prime = False
+            break
+            
+    # Если не делить ни на одно, значит число простое
+    if is_prime:
+        primes.append(candidate)
+        
+    candidate += 1
+
+# Выводим последнее найденное простое число
+print(primes[-1])
 ```
 # задания 2
 Мама Дяди Федора
@@ -47,6 +69,27 @@
 Результат работы
 7
 ```
+n = int(input())
+a = list(map(int, input().split()))
+
+b = 0
+c = 0
+d = 0
+g = n
+
+for i in range(n):
+    if a[i] == 1:
+        b += 1
+    elif a[i] == 2:
+        c += 1
+    elif a[i] == 3:
+        d += 1
+
+    if b >= 1 and c >= 1 and d >= 1:
+        g = i + 1
+        break
+
+print(g)
 ```
 # задания 3
 Удаление буквы
@@ -74,6 +117,23 @@ aa
 
 from string import ascii_lowercase
 ```
+from string import ascii_lowercase
+
+sym = input()
+
+res = ''
+mx = -1
+
+for char in ascii_lowercase:
+    c = str.count(sym, char)
+
+    if c > mx:
+        mx = c
+        res = char
+
+result = sym.replace(res, '')
+
+print(result)
 ```
 # задания 4
 Качество пароля
@@ -100,6 +160,40 @@ strong
 Примечания
 В этой задаче для проверки того, что символ входит в некоторую строку можно использовать оператор in.
 ```
+row1 = "1234567890"
+row2 = "qwertyuiop"
+row3 = "asdfghjkl"
+row4 = "zxcvbnm"
+
+a1 = list(row1)
+a2 = list(row2)
+a3 = list(row3)
+a4 = list(row4)
+
+a = int(input())
+
+for i in range(a):
+    p = input()
+
+    has_r1 = False
+    has_r2 = False
+    has_r3 = False
+    has_r4 = False
+
+    for sym in p:
+        if sym in a1:
+            has_r1 = True
+        elif sym in a2:
+            has_r2 = True
+        elif sym in a3:
+            has_r3 = True
+        elif sym in a4:
+            has_r4 = True
+
+    if has_r1 and has_r2 and has_r3 and has_r4:
+        print("strong")
+    else:
+        print("weak")
 ```
 # задания 5
 Игра в Дурака
@@ -132,4 +226,58 @@ King Hearts
 Результат работы
 1 0 0 1
 ```
+import sys
+
+def solve():
+    # Читаем все данные со стандартного ввода
+    input_data = sys.stdin.read().splitlines()
+    if not input_data:
+        return
+        
+    # Задаем строгий порядок достоинств карт (индекс в списке = сила карты)
+    ranks = ["6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+    
+    # 1. Считываем козырную масть
+    trump_suit = input_data[0].strip()
+    
+    # 2. Считываем количество пар карт (отбоев)
+    n = int(input_data[1].strip())
+    
+    results = []
+    line_idx = 2
+    
+    for _ in range(n):
+        # Считываем карту, которой походили
+        attack_card = input_data[line_idx].strip().split()
+        attack_rank = attack_card[0]
+        attack_suit = attack_card[1]
+        
+        # Считываем карту, которой отбиваются
+        defend_card = input_data[line_idx + 1].strip().split()
+        defend_rank = defend_card[0]
+        defend_suit = defend_card[1]
+        
+        # Переходим к следующей паре строк
+        line_idx += 2
+        
+        # Находим числовую силу карт по их индексу в списке ranks
+        attack_power = ranks.index(attack_rank)
+        defend_power = ranks.index(defend_rank)
+        
+        # Проверяем правила отбоя:
+        # Условие 1: Карты одной масти и бьющая карта старше
+        if attack_suit == defend_suit and defend_power > attack_power:
+            results.append("1")
+        # Условие 2: Бьющая карта — козырь, а атакующая — нет
+        elif defend_suit == trump_suit and attack_suit != trump_suit:
+            results.append("1")
+        # Во всех остальных случаях отбой не по правилам
+        else:
+            results.append("0")
+            
+    # Выводим результат через пробел, как требуется в условии
+    print(" ".join(results))
+
+if __name__ == "__main__":
+    solve()
 ```
