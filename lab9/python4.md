@@ -25,27 +25,21 @@
 37
 ```
 n = int(input())
-
-primes = []
-candidate = 2
-
-# Ищем простые числа, пока не найдем нужное количество
-while len(primes) < n:
-    # Проверяем, делится ли candidate на какое-нибудь из уже найденных простых чисел
-    is_prime = True
-    for p in primes:
-        if candidate % p == 0:
-            is_prime = False
+c = 0
+x = 2
+while c < n:
+    t = True
+    d = 2
+    while d * d <= x:
+        if x % d == 0:
+            t = False
             break
-            
-    # Если не делить ни на одно, значит число простое
-    if is_prime:
-        primes.append(candidate)
-        
-    candidate += 1
-
-# Выводим последнее найденное простое число
-print(primes[-1])
+        d += 1
+    if t:
+        c += 1
+        if c == n:
+            print(x)
+    x += 1
 ```
 # задания 2
 Мама Дяди Федора
@@ -114,8 +108,6 @@ abbba
 aa
 Примечания
 В этой задаче для подсчета количества букв можно использовать метод строки str.count(sym). Последовательность строчных символов латиницы можно получить из библиотеки string
-
-from string import ascii_lowercase
 ```
 from string import ascii_lowercase
 
@@ -160,37 +152,17 @@ strong
 Примечания
 В этой задаче для проверки того, что символ входит в некоторую строку можно использовать оператор in.
 ```
-row1 = "1234567890"
-row2 = "qwertyuiop"
-row3 = "asdfghjkl"
-row4 = "zxcvbnm"
+r = ["1234567890", "qwertyuiop", "asdfghjkl", "zxcvbnm"]
 
-a1 = list(row1)
-a2 = list(row2)
-a3 = list(row3)
-a4 = list(row4)
-
-a = int(input())
-
-for i in range(a):
-    p = input()
-
-    has_r1 = False
-    has_r2 = False
-    has_r3 = False
-    has_r4 = False
-
-    for sym in p:
-        if sym in a1:
-            has_r1 = True
-        elif sym in a2:
-            has_r2 = True
-        elif sym in a3:
-            has_r3 = True
-        elif sym in a4:
-            has_r4 = True
-
-    if has_r1 and has_r2 and has_r3 and has_r4:
+n = int(input())
+for j in range(n):
+    p = input().strip()
+    s = True
+    for i in r:
+        if not any(x in i for x in p):
+            s = False
+            break
+    if s:
         print("strong")
     else:
         print("weak")
@@ -226,58 +198,30 @@ King Hearts
 Результат работы
 1 0 0 1
 ```
-import sys
+t = input().strip()
+n = int(input().strip())
 
-def solve():
-    # Читаем все данные со стандартного ввода
-    input_data = sys.stdin.read().splitlines()
-    if not input_data:
-        return
-        
-    # Задаем строгий порядок достоинств карт (индекс в списке = сила карты)
-    ranks = ["6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
-    
-    # 1. Считываем козырную масть
-    trump_suit = input_data[0].strip()
-    
-    # 2. Считываем количество пар карт (отбоев)
-    n = int(input_data[1].strip())
-    
-    results = []
-    line_idx = 2
-    
-    for _ in range(n):
-        # Считываем карту, которой походили
-        attack_card = input_data[line_idx].strip().split()
-        attack_rank = attack_card[0]
-        attack_suit = attack_card[1]
-        
-        # Считываем карту, которой отбиваются
-        defend_card = input_data[line_idx + 1].strip().split()
-        defend_rank = defend_card[0]
-        defend_suit = defend_card[1]
-        
-        # Переходим к следующей паре строк
-        line_idx += 2
-        
-        # Находим числовую силу карт по их индексу в списке ranks
-        attack_power = ranks.index(attack_rank)
-        defend_power = ranks.index(defend_rank)
-        
-        # Проверяем правила отбоя:
-        # Условие 1: Карты одной масти и бьющая карта старше
-        if attack_suit == defend_suit and defend_power > attack_power:
-            results.append("1")
-        # Условие 2: Бьющая карта — козырь, а атакующая — нет
-        elif defend_suit == trump_suit and attack_suit != trump_suit:
-            results.append("1")
-        # Во всех остальных случаях отбой не по правилам
-        else:
-            results.append("0")
-            
-    # Выводим результат через пробел, как требуется в условии
-    print(" ".join(results))
+ranks = ['6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
+rank_value = {r: i for i, r in enumerate(ranks)}
 
-if __name__ == "__main__":
-    solve()
+results = []
+for _ in range(n):
+    atac = input().strip().split()
+    defense = input().strip().split()
+
+    a_r, a_s = atac[0], atac[1]
+    d_r, d_s = defense[0], defense[1]
+
+    a_st = (a_s == t)
+    d_st = (d_s == t)
+
+    b = False
+    if a_s == d_s and rank_value[d_r] > rank_value[a_r]:
+        b = True
+    elif d_st and not a_st:
+        b = True
+
+    results.append('1' if b else '0')
+
+print(' '.join(results))
 ```
