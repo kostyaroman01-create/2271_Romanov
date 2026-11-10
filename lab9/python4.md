@@ -202,25 +202,33 @@ kozyr = input().strip()
 n = int(input().strip())
 
 ranks = ['6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
-rank_znache = {ranks[i]: i for i in range(len(ranks))}
+rank_mast = {ranks[i]: i for i in range(len(ranks))}
 r = []
-for _ in range(n):
-    attack = input().strip().split()
-    defense = input().strip().split()
-    
-    a_rank, a_masty = attack[0], attack[1]
-    d_rank, d_masty  = defense[0], defense[1]
-    
-    a_kozyr = (a_masty == kozyr)
-    d_kozyr = (d_masty == kozyr)
-    
-    beats = False
-    if a_masty == d_masty and rank_znache[d_rank] > rank_znache[a_rank]:
-        beats = True
-    elif d_kozyr and not a_kozyr:
-        beats = True
-    
-    r.append('1' if beats else '0')
+
+for i in range(n):
+   attack = input().strip().split()
+   defense = input().strip().split()
+
+   atak_rank, atak_masty = attack[0], attack[1]
+   defen_rank, defen_masty = defense[0], defense[1]
+
+   atak_kozyr = atak_masty == kozyr
+   defen_kozyr = defen_masty == kozyr
+
+   buto=False
+
+   if atak_masty==defen_masty and rank_mast[defen_rank] > rank_mast[atak_rank]:
+      buto = True
+   elif defen_kozyr and not atak_kozyr:
+      buto = True
+
+   if(buto):
+      r.append('1')
+   else:
+      r.append('0')  
 
 print(' '.join(r))
 ```
+* if atak_masty==defen_masty.... если если масти у карт атаки и защиты равны и ранк защиты больше чем у атаки то будет бито
+* атака : 10 Spades < защита: Queen Spades
+*  elif defen_kozyr and not atak_kozyr даже если у козаря меньше ранк то он всеравно бьет карту не его масти
