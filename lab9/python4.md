@@ -198,30 +198,29 @@ King Hearts
 Результат работы
 1 0 0 1
 ```
-t = input().strip()
+kozyr = input().strip()
 n = int(input().strip())
 
 ranks = ['6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
-rank_value = {r: i for i, r in enumerate(ranks)}
-
-results = []
+rank_znache = {ranks[i]: i for i in range(len(ranks))}
+r = []
 for _ in range(n):
-    atac = input().strip().split()
+    attack = input().strip().split()
     defense = input().strip().split()
+    
+    a_rank, a_masty = attack[0], attack[1]
+    d_rank, d_masty  = defense[0], defense[1]
+    
+    a_kozyr = (a_masty == kozyr)
+    d_kozyr = (d_masty == kozyr)
+    
+    beats = False
+    if a_masty == d_masty and rank_znache[d_rank] > rank_znache[a_rank]:
+        beats = True
+    elif d_kozyr and not a_kozyr:
+        beats = True
+    
+    r.append('1' if beats else '0')
 
-    a_r, a_s = atac[0], atac[1]
-    d_r, d_s = defense[0], defense[1]
-
-    a_st = (a_s == t)
-    d_st = (d_s == t)
-
-    b = False
-    if a_s == d_s and rank_value[d_r] > rank_value[a_r]:
-        b = True
-    elif d_st and not a_st:
-        b = True
-
-    results.append('1' if b else '0')
-
-print(' '.join(results))
+print(' '.join(r))
 ```
