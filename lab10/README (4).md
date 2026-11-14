@@ -98,7 +98,22 @@ int main() {
 использованы во всех случаях.*
 
 *Записанную программу сохраните в папке с номером задания.*
+```
+int main() {
+    int  a = 5;
+    int* p = &a;
 
+    std::cout << *p << std::endl;
+
+    int b = a * 2;
+
+    int c = b & 3;
+
+    int& r = a;
+
+    std::cout << a << " " << b << " " << c << std::endl;
+    return 0
+```
 ### Задание 4 **(2)**
 
 *Выпишите значения всех переменных, в том числе указателей,
@@ -117,7 +132,34 @@ c += a;
 q = p ;
 *q += 10;
 ```
+```
+#include <iostream>
+#include <vector>
 
+int main() {
+    unsigned a = 8, b = 3, c = 17;
+    unsigned* p = &a;
+    unsigned* q = &b;
+    *p += *q + c;
+    std::cout << "a: "<< a << " b: " << b << " c: " << c << " p: " << *p << " q: " << *q << std::endl;
+    c = *q;
+    std::cout << "a: " << a << " b: " << b << " c: " << c << " p: " << *p << " q: " << *q << std::endl;
+    p = &c;
+    std::cout << "a: " << a << " b: " << b << " c: " << c << " p: " << *p << " q: " << *q << std::endl;
+    c += a;
+    std::cout << "a: " << a << " b: " << b << " c: " << c << " p: " << *p << " q: " << *q << std::endl;
+    *p += 10;
+    std::cout << "a: " << a << " b: " << b << " c: " << c << " p: " << *p << " q: " << *q << std::endl;
+    *q = *p; 
+    std::cout << "a: " << a << " b: " << b << " c: " << c << " p: " << *p << " q: " << *q << std::endl;
+    q = p;
+    std::cout << "a: " << a << " b: " << b << " c: " << c << " p: " << *p << " q: " << *q << std::endl;
+    *q += 10;
+    std::cout << "a: " << a << " b: " << b << " c: " << c << " p: " << *p << " q: " << *q << std::endl;
+
+    return 0;
+}
+```
 ### Задание 5 **(1)**
 
 *Что сравнивается в приведенной ниже программе? Как можно
@@ -131,8 +173,23 @@ if (p < q)
 else
     std::cout << "No";
 ```
+* No
+* сравнивает значение указателей а не на которые они указывают
+* 
+```
+#include <iostream>
+#include <vector>
 
-
+int main() {
+    int y = 2, x = 1;
+    int* p = &y, * q = &x;
+    if (p < q)
+        std::cout << "Yes";
+    else
+        std::cout << "No";
+    return 0;
+}
+```
 ### Задание 6 **(2)**
 
 *Объясните работу следующей программы. Как изменится
@@ -143,7 +200,26 @@ double x = 0;
 double *d = &x;
 std::cout << reinterpret_cast<size_t>(d + 4) - reinterpret_cast<size_t>(d - 4) << std::endl;
 ```
+* 64
+```
+char x = 0;
+char* d = &x;
+std::cout << reinterpret_cast<size_t>(d + 4) - reinterpret_cast<size_t>(d - 4) << std::endl;
+return 0;
+```
+* 8
+```
+#include <iostream>
+#include <vector>
 
+int main() {
+    int x = 0;
+    int* d = &x;
+    std::cout << reinterpret_cast<size_t>(d + 4) - reinterpret_cast<size_t>(d - 4) << std::endl;
+    return 0;
+}
+```
+* 32
 ### Задание 7 **(2)**
 
 *Объясните работу следующей программы. Как изменится
@@ -162,7 +238,7 @@ int a[20];
 for ( int i = 0; i < 20; i++)
     a[i] = i;
 int *b=a + 8;
-for (int i =...; i <...; i++)
+for (int i =-8; i <12; i++)
     std::cout << b[i] <<' ';
 ```
 
@@ -176,7 +252,7 @@ for (int i =...; i <...; i++)
 int a[10];
 std::cout << &a[8] - &a[3] << std::endl;
 ```
-
+* 5
 ### Задание 10 **(1)**
 
 *Есть ли разница между инициализацией* **p** и **q** *в следующей программе? Обоснуйте ответ.*
@@ -185,7 +261,7 @@ int x [10]={1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 int *p = x + 5;
 int *q = &x[5];
 ```
-
+* нет они не меняются
 ### Задание 11 **(3)**
 
 *Указатели можно использовать для итерации по массивам.
