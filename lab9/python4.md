@@ -152,14 +152,19 @@ strong
 Примечания
 В этой задаче для проверки того, что символ входит в некоторую строку можно использовать оператор in.
 ```
-r = ["1234567890", "qwertyuiop", "asdfghjkl", "zxcvbnm"]
-
 n = int(input())
-for j in range(n):
-    p = input().strip()
+rs = ["1234567890", "qwertyuiop", "asdfghjkl", "zxcvbnm"]
+
+for _ in range(n):
+    parol = input()
     s = True
-    for i in r:
-        if not any(x in i for x in p):
+    for r in rs:
+        f = False
+        for c in parol:
+            if c in r:
+                f = True
+                break
+        if not f:
             s = False
             break
     if s:
