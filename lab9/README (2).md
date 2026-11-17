@@ -1,4 +1,3 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5e05a0cd-5ae5-43e4-b0f0-812a5dfdfbbd" />ф# Языки программирования
 ## Лабораторная работа 9
 
 ### Задание 1 **(2)**
