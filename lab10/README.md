@@ -51,7 +51,7 @@ int main() {
 
 }
 ```
-<img width="1232" height="966" alt="image" src="https://github.com/user-attachments/assets/ed247590-17b5-4212-b19d-9bfb55f2a09f" />
+<img width="454" height="162" alt="image" src="https://github.com/user-attachments/assets/ba868990-fd09-4aac-8a5f-3a2c2ebc809a" />
 
 ### Задание 2 **(1)**
 
@@ -68,7 +68,12 @@ for (int i = 0; i <10; i++)
 
 *Записанную программу сохраните в папке с номером задания.*
 *Скриншоты работы прикрепите к отчету.*
+<img width="422" height="309" alt="image" src="https://github.com/user-attachments/assets/c6d6b68a-7c4a-4a65-a476-29c66f5238a8"/>
 
+
+
+
+<img width="452" height="307" alt="image" src="https://github.com/user-attachments/assets/a7dae9b3-2b8e-4688-aaa4-4bb722785c0b" />
 ### Задание 3 **(2)**
 
 *Токен* **«*»** *в языке C++ может использоваться в трех различных
