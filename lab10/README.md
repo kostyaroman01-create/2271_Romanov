@@ -133,6 +133,7 @@ std::cout << reinterpret_cast<size_t>(d + 4) - reinterpret_cast<size_t>(d - 4) <
 ```
 <img width="296" height="102" alt="image" src="https://github.com/user-attachments/assets/4caf70e3-8e97-4cc4-b5bb-63b71e9009e3" />
 * когда мы прибавели 4 то адрес увеличелся 4 * 8
+<img width="420" height="360" alt="image" src="https://github.com/user-attachments/assets/8ab11f69-d77d-4235-be53-f8b34ec31470" />
 
 ### Задание 7 **(2)**
 
@@ -155,7 +156,9 @@ int *b=a + 8;
 for (int i =...; i <...; i++)
     std::cout << b[i] <<' ';
 ```
-
+* надо написать i=-8, а i<12
+<img width="487" height="184" alt="image" src="https://github.com/user-attachments/assets/4b1bf591-d6de-4403-80ff-e4feea2ca1bf" />
+*
 
 ### Задание 9 **(2)**
 
