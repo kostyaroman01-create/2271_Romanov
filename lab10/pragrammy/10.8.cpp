@@ -6,7 +6,7 @@ int main() {
     for ( int i = 0; i < 20; i++)
         a[i] = i;
     int *b=a + 8;
-    for (int i = ; i <12; i++)
+    for (int i = -8; i <12; i++)
         std::cout << b[i] <<' ';
     return 0;
 }
