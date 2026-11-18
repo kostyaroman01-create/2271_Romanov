@@ -115,7 +115,11 @@ if (p < q)
 else
     std::cout << "No";
 ```
+* сравнивается адреса p и q
+<img width="469" height="120" alt="image" src="https://github.com/user-attachments/assets/a4803838-7f62-4b68-a04e-af07795e3b26" />
 
+* можно поменять местами y и x
+<img width="298" height="73" alt="image" src="https://github.com/user-attachments/assets/bda8f147-ae63-4882-8d22-40b2a60d0b11" />
 
 ### Задание 6 **(2)**
 
