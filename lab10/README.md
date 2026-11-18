@@ -131,6 +131,8 @@ double x = 0;
 double *d = &x;
 std::cout << reinterpret_cast<size_t>(d + 4) - reinterpret_cast<size_t>(d - 4) << std::endl;
 ```
+<img width="296" height="102" alt="image" src="https://github.com/user-attachments/assets/4caf70e3-8e97-4cc4-b5bb-63b71e9009e3" />
+* когда мы прибавели 4 то адрес увеличелся 4 * 8
 
 ### Задание 7 **(2)**
 
