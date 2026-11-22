@@ -23,7 +23,18 @@
 2.333333 3.0 3.666667
 
 ```
+n, m = map(int, input().split())
+a = list(map(float, input().split()))
 
+for i in range(m):
+    d = [0.0] * n
+    d[0] = (2 * a[0] + a[1]) / 3.0
+    d[-1] = (2 * a[-1] + a[-2]) / 3.0
+    for j in range(1, n - 1):
+        d[j] = (a[j-1] + a[j] + a[j+1]) / 3.0
+    a = d
+
+print(' '.join(f"{x:.6f}" for x in a))
 ```
 
 # Задание 2
@@ -48,6 +59,13 @@
 
 Хитрый способ написания ключа для поиска: взять модуль числа, умножить его на 2, добавить единицу для положительных значений.
 ```
+n= int(input())
+a = list(map(int, input().split()))
+
+a.sort(key=lambda x: (abs(x), x > 0))
+
+print(' '.join(map(str, a)))
+
 
 ```
 
@@ -83,7 +101,22 @@ gerbafrika
 В этой задаче можно сделать словарь, в котором ключем будет словарное слово , а значением — заменяемое слово. В цикле for разбиваем заданное слово на две части всеми способами и проверяем, есть ли они в словаре в виде ключей.
 
 ```
+word = input().strip()
+n = int(input())
 
+d = {}
+for _ in range(n):
+    key = input().strip()
+    value = input().strip()
+    d[key] = value
+
+# Перебираем все возможные разбиения слова на две части
+for i in range(1, len(word)):
+    left = word[:i]
+    right = word[i:]
+    if left in d and right in d:
+        print(d[left] + d[right])
+        break
 ```
 
 # Задание 4
@@ -111,7 +144,16 @@ gerbafrika
 3 7 9
 
 ```
+n, m = map(int, input().split())
 
+# Считываем матрицу
+matrix = [list(map(int, input().split())) for _ in range(n)]
+
+# Транспонируем: новый элемент b[i][j] = a[j][i]
+# Размер результата: m строк, n столбцов
+for j in range(m):
+    row = [matrix[i][j] for i in range(n)]
+    print(' '.join(map(str, row)))
 ```
 
 # Задание 5
@@ -133,5 +175,38 @@ gerbafrika
 Выведите одно вещественное число — расстояние пройденное дроном от первого дерева в маршруте до последнего. Ответ будет считаться верным, если он будет отличаться от точного значения не более чем на 10−3.
 
 ```
+import math
 
+w, h, s = map(int, input().split())
+n = int(input())
+
+trees = []
+for _ in range(n):
+    x, y = map(int, input().split())
+    band = x // s  # номер полосы
+    trees.append((band, x, y))
+
+# Сортируем деревья в порядке обхода дроном:
+# 1. По номеру полосы (возрастание)
+# 2. Внутри полосы:
+#    - если полоса чётная: по y возрастание
+#    - если полоса нечётная: по y убывание
+# 3. При равных y: по x возрастание (независимо от чётности)
+def sort_key(t):
+    band, x, y = t
+    if band % 2 == 0:
+        return (band, y, x)
+    else:
+        return (band, -y, x)
+
+trees.sort(key=sort_key)
+
+# Вычисляем суммарное расстояние между последовательными деревьями
+total = 0.0
+for i in range(1, n):
+    x1, y1 = trees[i-1][1], trees[i-1][2]
+    x2, y2 = trees[i][1], trees[i][2]
+    total += math.hypot(x2 - x1, y2 - y1)
+
+print(f"{total:.10f}")
 ```
