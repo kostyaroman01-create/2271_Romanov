@@ -1,4 +1,4 @@
-# Языки программирования
+<img width="372" height="225" alt="image" src="https://github.com/user-attachments/assets/f5047c01-1a0f-42a9-ba8c-800e86c22a4a" /># Языки программирования
 ## Лабораторная работа 10
 
 ### Задание 1 **(2)**
@@ -72,7 +72,7 @@ for (int i = 0; i <10; i++)
 <img width="422" height="309" alt="image" src="https://github.com/user-attachments/assets/c6d6b68a-7c4a-4a65-a476-29c66f5238a8"/>
 
 <img width="452" height="307" alt="image" src="https://github.com/user-attachments/assets/a7dae9b3-2b8e-4688-aaa4-4bb722785c0b" />
-
+* масив хранит все поседовательно тойсть он вычеслил и сохранил значение в блок и дальше умножает
 
 ### Задание 3 **(2)**
 
@@ -118,6 +118,7 @@ c += a;
 q = p ;
 *q += 10;
 ```
+<img width="372" height="225" alt="image" src="https://github.com/user-attachments/assets/0b7a15f1-d352-4834-a002-0b7e62c0462d" />
 * unsigned a = 8, b = 3 ,c = 17;
 ```
 a=8
@@ -217,7 +218,7 @@ if (p < q)
 else
     std::cout << "No";
 ```
-* сравнивается адреса p и q
+* сравнивается значения указателей p и q, которые ссылаются на x и y
 <img width="469" height="120" alt="image" src="https://github.com/user-attachments/assets/a4803838-7f62-4b68-a04e-af07795e3b26" />
 
 * можно поменять местами y и x
@@ -234,7 +235,9 @@ double *d = &x;
 std::cout << reinterpret_cast<size_t>(d + 4) - reinterpret_cast<size_t>(d - 4) << std::endl;
 ```
 <img width="296" height="102" alt="image" src="https://github.com/user-attachments/assets/4caf70e3-8e97-4cc4-b5bb-63b71e9009e3" />
-* когда мы прибавели 4 то адрес увеличелся 4 * 8
+* когда мы прибавели 4 то адрес увеличелся 4 * 8, размер double(8 байт)
+
+* у int (4 байт) поэтому 4 * 4, char(1 байт) поэтому 4 * 1
 <img width="420" height="360" alt="image" src="https://github.com/user-attachments/assets/8ab11f69-d77d-4235-be53-f8b34ec31470" />
 
 ### Задание 7 **(2)**
@@ -245,8 +248,9 @@ std::cout << reinterpret_cast<size_t>(d + 4) - reinterpret_cast<size_t>(d - 4) <
 ```
 std::cout << reinterpret_cast <double*>(3000) - reinterpret_cast <double*>(2000) << std::endl;
 ```
-* (3000-2000)/8=125, потому что sizeof(double)=8 байт
-* (3000-2000)/4=250, потому что sizeof(int)=4 байт
+* (3000-2000)/8=125, потому что размер double=8 байт
+* (3000-2000)/4=250, потому что размер int =4 байт
+<img width="332" height="176" alt="image" src="https://github.com/user-attachments/assets/e79d978a-c8ee-4076-9238-6730083464b3" />
 
 
 ### Задание 8 **(2)**
@@ -261,9 +265,8 @@ int *b=a + 8;
 for (int i =...; i <...; i++)
     std::cout << b[i] <<' ';
 ```
-* надо написать i=-8, а i<12
+* i=-8, i<12, если было i=0 и i<20 то он вышел за границы, потому что b[] смещен на 8 и если мы начинали с 0 то i=8
 <img width="487" height="184" alt="image" src="https://github.com/user-attachments/assets/4b1bf591-d6de-4403-80ff-e4feea2ca1bf" />
-*
 
 ### Задание 9 **(2)**
 
@@ -279,6 +282,8 @@ std::cout << &a[8] - &a[3] << std::endl;
 * нет ответ не изменится
 
 
+
+
 ### Задание 10 **(1)**
 
 *Есть ли разница между инициализацией* **p** и **q** *в следующей программе? Обоснуйте ответ.*
@@ -291,7 +296,8 @@ int *q = &x[5];
 * x+5, прибавляется к x[0], а &x[5] берет иедекс под номером 5, поэтому и они дадут одинаковый ответ
 ### Задание 11 **(3)**
 
-*Указатели можно использовать для итерации по массивам.
+*Указатели можно использовать для итерации по ![Uploading Снимок экрана 2026-11-24 184431.jpg…]()
+массивам.
 Напишите программу, которая найдет сумму элементов массива,
 используя указатели. В начале цикла указатель требуется установить
 на начало массива, в конце каждой итерации смещать его к
