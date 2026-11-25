@@ -18,7 +18,20 @@ int main() {
     return 0;
 }
 ```
+```
+int bar(int x); 
 
+int foo(int x) {
+    return bar(x);
+}
+int bar(int x) {
+    return x+1;
+}
+int main() {
+    foo(0);
+    return 0;
+}
+```
 ### Задание 2 **(1)**
 
 *Функция* **dswap** *должна была обменивать значения своих параметров.* 
@@ -63,9 +76,208 @@ void dosome_4(std::vector<int> V);
 ```
 dosome({1, 2, 3});
 ```
+```
+#include <iostream>
+#include <vector>
 
+void dosome_1(const std::vector<int> &V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    V[0] = -1;
+    std::cout << "sum = " << s << std::endl;
+}
 
+void dosome_2(std::vector<int> &V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    V[0] = -1;
+    std::cout << "sum = " << s << std::endl;
+}
 
+void dosome_3(const std::vector<int> V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    V[0] = -1;
+    std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_4(std::vector<int> V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    V[0] = -1;
+    std::cout << "sum = " << s << std::endl;
+}
+
+int main(){
+    std::vector<int> V = {1,2,3,4,5};
+    dosome_1(V);
+    dosome_2(V);
+    dosome_3(V);
+    dosome_4(V);
+
+    return 0;
+}
+```
+```
+#include <iostream>
+#include <vector>
+
+void dosome_1(const std::vector<int> &V){
+ int s = 0;
+ for(auto x:V){
+ s+=x;
+ }
+ V[0] = -1;
+ std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_2(std::vector<int> &V){
+ int s = 0;
+ for(auto x:V){
+ s+=x;
+ }
+ V[0] = -1;
+ std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_3(const std::vector<int> V){
+ int s = 0;
+ for(auto x:V){
+ s+=x;
+ }
+ V[0] = -1; 
+ std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_4(std::vector<int> V){
+ int s = 0;
+ for(auto x:V){
+ s+=x;
+ }
+ V[0] = -1;
+ std::cout << "sum = " << s << std::endl;
+}
+
+int main(){
+ std::vector<int> V = {1,2,3,4,5};
+ dosome_1(V);
+ dosome_2(V);
+ dosome_3(V);
+ dosome_4(V);
+
+ return 0;
+}
+```
+```
+#include <iostream>
+#include <vector>
+
+void dosome_1(const std::vector<int> &V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_2(std::vector<int> &V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    V[0] = -1;
+    std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_3(const std::vector<int> V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_4(std::vector<int> V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    V[0] = -1;
+    std::cout << "sum = " << s << std::endl;
+}
+
+int main(){
+    std::vector<int> V = {1,2,3,4,5};
+    dosome_1(V);
+    dosome_2(V);
+    dosome_3(V);
+    dosome_4(V);
+
+    return 0;
+}
+```
+```
+#include <iostream>
+#include <vector>
+
+void dosome_1(const std::vector<int> &V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_2(std::vector<int> &V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    V[0] = -1;
+    std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_3(const std::vector<int> V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    std::cout << "sum = " << s << std::endl;
+}
+
+void dosome_4(std::vector<int> V){
+    int s = 0;
+    for(auto x:V){
+        s+=x;
+    }
+    V[0] = -1;
+    std::cout << "sum = " << s << std::endl;
+}
+
+int main(){
+    std::vector<int> V = {1,2,3,4,5};
+    dosome_1(V);
+    dosome_2(V);
+    dosome_3(V);
+    dosome_4(V);
+
+    dosome_1({1, 2, 3});
+    dosome_2({1, 2, 3});
+    dosome_3({1, 2, 3});
+    dosome_4({1, 2, 3});
+
+    return 0;
+}
+```
+* Самый правильный вариант — первый. Он передается по ссылке и защищен от изменений
 ### Задание 4 **(2)**
 
 *Напишите программу в которой будет создаваться восемь массивов из 128 целых чисел четырьмя способами,
@@ -75,7 +287,128 @@ dosome({1, 2, 3});
 Сравните, насколько далеко они располагаются друг от друга. Какие выводы можно из этого сделать.*
 
 *В отчет запишите программу и скриншот ее работы.*
+```
+#include <iostream>
 
+int G1[128] = {0}, G2[128] = {0};
+
+void foo(){
+    static int s1[128] = {0}, s2[128] = {0};
+    int L1[128] = {0}, L2[128] = {0};
+    int *H1 = new int[128];
+    int *H2 = new int[128];
+    std::cout << "Global   " << &G1[0] << ' ' << &G1[127] << ' ' << &G2[0] << ' ' << &G2[127] << std::endl;
+    std::cout << "Static   " << &s1[0] << ' ' << &s1[127] << ' ' << &s2[0] << ' ' << &s2[127] << std::endl;
+    std::cout << "Local   " << &L1[0] << ' ' << &L1[127] << ' ' << &L2[0] << ' ' << &L2[127] << std::endl;
+    std::cout << "Heap   " << &H1[0] << ' ' << &H1[127] << ' ' << &H2[0] << ' ' << &H2[127] << std::endl;
+}
+
+int main(){
+    foo();
+    return 0;
+}
+```
+* Глобальные и статические переменные хранятся в статической памяти, локальные — в стеке, а динамические — в куче.
+```
+#include <iostream>
+
+int G1[128] = {0}, G2[128] = {0};
+
+void foo(){
+    static int s1[128] = {0}, s2[128] = {0};
+    int L1[128] = {0}, L2[128] = {0};
+    int *H1 = new int[128];
+    int *H2 = new int[128];
+    std::cout << "Global   " << &G1[0] << ' ' << &G1[127] << ' ' << &G2[0] << ' ' << &G2[127] << std::endl;
+    std::cout << "Static   " << &s1[0] << ' ' << &s1[127] << ' ' << &s2[0] << ' ' << &s2[127] << std::endl;
+    std::cout << "Local   " << &L1[0] << ' ' << &L1[127] << ' ' << &L2[0] << ' ' << &L2[127] << std::endl;
+    std::cout << "Heap   " << &H1[0] << ' ' << &H1[127] << ' ' << &H2[0] << ' ' << &H2[127] << std::endl;
+    G1[0]++;
+    s1[0]++;
+    H1[0]++;
+    L1[0]++;
+    std::cout << G1[0] << ' ' << s1[0] << ' ' << H1[0] << ' ' << L1[0] << std::endl;
+}
+
+int main(){
+    foo();
+    foo();
+    foo();
+    return 0;
+}
+```
+* Глобальные и статические создаются один раз вначале программы, динамические массивы в куче, а локальные в стеке.
+
+```
+#include <iostream>
+
+int G1[128] = {0}, G2[128] = {0};
+
+void foo(){
+    static int s1[128] = {0}, s2[128] = {0};
+    int L1[128] = {0}, L2[128] = {0};
+    int *H1 = new int[128];
+    int *H2 = new int[128];
+    std::cout << "Global   " << &G1[0] << ' ' << &G1[127] << ' ' << &G2[0] << ' ' << &G2[127] << std::endl;
+    std::cout << "Static   " << &s1[0] << ' ' << &s1[127] << ' ' << &s2[0] << ' ' << &s2[127] << std::endl;
+    std::cout << "Local   " << &L1[0] << ' ' << &L1[127] << ' ' << &L2[0] << ' ' << &L2[127] << std::endl;
+    std::cout << "Heap   " << &H1[0] << ' ' << &H1[127] << ' ' << &H2[0] << ' ' << &H2[127] << std::endl;
+    G1[0]++;
+    s1[0]++;
+    H1[0]++;
+    L1[0]++;
+    std::cout << G1[0] << ' ' << s1[0] << ' ' << H1[0] << ' ' << L1[0] << std::endl;
+    delete[] H1;
+    delete[] H2;
+}
+
+void bar(){
+    foo();
+}
+
+int main(){
+    foo();
+    bar();
+    bar();
+    return 0;
+}
+```
+```
+#include <iostream>
+
+int G1[128] = {0}, G2[128] = {0};
+int *H1, *H2;
+
+void foo(){
+    static int s1[128] = {0}, s2[128] = {0};
+    int L1[128] = {0}, L2[128] = {0};
+    H1 = new int[128];
+    H2 = new int[128];
+    std::cout << "Global   " << &G1[0] << ' ' << &G1[127] << ' ' << &G2[0] << ' ' << &G2[127] << std::endl;
+    std::cout << "Static   " << &s1[0] << ' ' << &s1[127] << ' ' << &s2[0] << ' ' << &s2[127] << std::endl;
+    std::cout << "Local   " << &L1[0] << ' ' << &L1[127] << ' ' << &L2[0] << ' ' << &L2[127] << std::endl;
+    std::cout << "Heap   " << &H1[0] << ' ' << &H1[127] << ' ' << &H2[0] << ' ' << &H2[127] << std::endl;
+    G1[0]++;
+    s1[0]++;
+    H1[0]++;
+    L1[0]++;
+    std::cout << G1[0] << ' ' << s1[0] << ' ' << H1[0] << ' ' << L1[0] << std::endl;
+}
+
+void bar(){
+    foo();
+}
+
+int main(){
+    foo();
+    bar();
+    foo();
+    std::cout << H1[0];
+    delete[] H1;
+    delete[] H2;
+    return 0;
+}
+```
 ### Задание 5 **(2)**
 
 *Приведенная ниже программа вызывает ошибку. Почему?*
